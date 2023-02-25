@@ -1,0 +1,256 @@
+{% extends 'hms_admin/admin_master.html' %}
+{% load static %}
+
+{% block header %}
+<style>
+    * {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        color: rgb(2, 2, 104);
+    }
+
+    ul {
+        font-size: 20px;
+    }
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-2">
+                <div>
+                    <h2>Patient Report Panel</h2>
+
+                    <div class="mt-5" style="width:80%; margin-left: 10%; float: left;">
+
+                        <ul style="list-style-type:square;color: black;">
+                            <li id="prof"> Patient Profile </li> <br>
+
+                            <div id="pt_prof" style="display: none;">
+                                <table class="table table-primary table-striped">
+                                    <tr>
+                                        <th> Patient Name </th>
+                                        <td> Lorem, ipsum. </td>
+                                        <th> Patient ID</th>
+                                        <td> 12345 </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Address </th>
+                                        <td> Lorem ipsum dolor sit amet. </td>
+                                        <th> Gender </th>
+                                        <td> Female </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Contact Number </th>
+                                        <td> 9845687564 </td>
+                                        <th> Date of Birth </th>
+                                        <td> 21/07/1994 </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Age </th>
+                                        <td> 40 </td>
+                                        <th> Blood Group </th>
+                                        <td> O+ </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                            <script>
+
+                                $(document).ready(function () {
+                                    $('#prof').click(function () {
+                                        $('#pt_prof').slideToggle('slow');
+                                    });
+                                })
+
+                            </script>
+
+
+                            <li id="appt"> Appointment Record </li> <br>
+
+                            <div id="appt_record" style="display: none;">
+                                <table class="table table-primary table-striped">
+                                    <tr>
+                                        <th> Department </th>
+                                        <td> Lorem, ipsum. </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Doctor </th>
+                                        <td> Lorem ipsum </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Appointment Date </th>
+                                        <td> dd/mm/yyyy </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Appointment Time </th>
+                                        <td> 10:00 AM</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <script>
+
+                                $(document).ready(function () {
+                                    $('#appt').click(function () {
+                                        $('#appt_record').slideToggle('slow');
+                                    });
+                                })
+
+                            </script>
+
+                            <!-- <li id="pre"> Prescription Record </li> <br>
+
+                            <div id="prescription_record" style="display: none;">
+                                <table class="table table-primary table-striped">
+                                    <tr>
+                                        <th> Doctor </th>
+                                        <th> Patient </th>
+                                        <th> Prescription Date </th>
+                                        <th> View </th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td> View </td>
+                                    </tr>
+                                </table>
+                            </div> -->
+
+                            <!-- <script>
+
+                                $(document).ready(function () {
+                                    $('#pre').click(function () {
+                                        $('#prescription_record').slideToggle('slow');
+                                    });
+                                })
+
+                            </script> -->
+
+                            <!-- <li id="bill"> Billing Report </li> <br> -->
+
+                            <!-- <div id="billing_report" style="display: none;">
+                                <table class="table table-primary table-striped">
+                                    <tr>
+                                        <th> Bill No. </th>
+                                        <td> #HMS 1 </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th> Appointment No. </th>
+                                        <td> 1 </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th> Bill Date </th>
+                                        <td> dd/mm/yyyy </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th> Bill Time </th>
+                                        <td> 09.38 AM </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th> Bill Amount </th>
+                                    </tr>
+                                    <tr>
+                                        <td>24/06/2022</td>
+                                        <td>Lorem ipsum dolor sit amet.</td>
+                                        <td>RS.350.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24/06/2022</td>
+                                        <td>Lorem, ipsum dolor.</td>
+                                        <td>Rs.150.00</td>
+                                    </tr>
+
+                                </table>
+                            </div> -->
+
+                            <!-- <script>
+
+                                $(document).ready(function () {
+                                    $('#bill').click(function () {
+                                        $('#billing_report').slideToggle('slow');
+                                    });
+                                })
+
+                            </script> -->
+
+                            <li id="pay"> Payment Report </li> <br>
+
+                            <div id="payment_report" style="display: none;">
+                                <table class="table table-primary table-striped">
+
+                                    <tr>
+                                        <td> Payment Report : </td>
+                                        <td> </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th> Ref No. </th>
+                                        <td> 1 </td>
+                                        <td> Appointment No. </td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th> Paid Date </th>
+                                        <td>dd/mm/yyyy </td>
+                                        <td> Paid Time </td>
+                                        <td>10:00 AM </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Paid Amount </th>
+                                        <td> Rs.</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                            <script>
+
+                                $(document).ready(function () {
+                                    $('#pay').click(function () {
+                                        $('#payment_report').slideToggle('slow');
+                                    });
+                                })
+
+                            </script>
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

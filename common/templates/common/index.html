@@ -1,0 +1,470 @@
+{% extends 'common/common_master.html' %} 
+{% load static %} 
+
+{% block header %}
+<style>
+
+</style>
+
+{% endblock %} 
+
+
+{% block content %}
+
+
+<!-- Slider Start -->
+<section class="banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12 col-xl-7">
+				<div class="block">
+					<div class="divider mb-3"></div>
+					<span class="text-uppercase text-sm letter-spacing">Total Health care
+						solution</span>
+					<h1 class="mb-3 mt-3">Your most trusted health partner</h1>
+
+					<p class="mb-4 pr-5">
+						A the well-acclaimed health enterprise and one of the leading healthcare systems in Malabar,
+						assures comprehensive health care services with a global standard.
+					</p>
+					<div class="btn-container">
+						<a href="{% url 'patient:appointment_1' %}" target="_blank"
+							class="btn btn-main-2 btn-icon btn-round-full">Make appoinment <i
+								class="icofont-simple-right ml-2"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="features">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="feature-block d-lg-flex">
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-surgeon-alt"></i>
+						</div>
+						<span>24 Hours Service</span>
+						<h4 class="mb-3">Online Appoinment</h4>
+						<p class="mb-4">
+							Get ALl time support for emergency.We have introduced the
+							principle of family medicine.
+						</p>
+						<a href="{% url 'patient:appointment_1' %}" class="btn btn-main btn-round-full">Make an appoinment</a>
+					</div>
+
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-ui-clock"></i>
+						</div>
+						<span>Timing schedule</span>
+						<h4 class="mb-3">Working Hours</h4>
+						<ul class="w-hours list-unstyled">
+							<li class="d-flex justify-content-between">
+								Sun - Wed : <span>8:00 - 17:00</span>
+							</li>
+							<li class="d-flex justify-content-between">
+								Thu - Fri : <span>9:00 - 17:00</span>
+							</li>
+							<li class="d-flex justify-content-between">
+								Sat - sun : <span>10:00 - 17:00</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="feature-item mb-5 mb-lg-0">
+						<div class="feature-icon mb-4">
+							<i class="icofont-support"></i>
+						</div>
+						<span>Emegency Cases</span>
+						<h4 class="mb-3">1-800-700-6200</h4>
+						<p>
+							Get ALl time support for emergency.We have introduced the
+							principle of family medicine.Get Conneted with us for any urgency
+							.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section about">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img">
+					<img src="{% static 'images/about/img-1.jpg' %}" alt="" class="img-fluid" />
+					<img src="{% static 'images/about/img-2.jpg' %}" alt="" class="img-fluid mt-4" />
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img mt-4 mt-lg-0">
+					<img src="{% static 'images/about/img-3.jpg' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="about-content pl-4 mt-4 mt-lg-0">
+					<h2 class="title-color">Personal care <br />& healthy living</h2>
+					<p class="mt-4 mb-5">
+						Personalized Medical Assistant for all your healthcare needs.
+						Book instant appointment, pay securely, eConsult with our doctors and save all your health records at one place are some of the benefits of OneHeaven App.
+						 It is everything you need, to manage your family Health. 
+					</p>
+
+					<a href="{% url 'common:services' %}" class="btn btn-main-2 btn-round-full btn-icon">Services<i
+							class="icofont-simple-right ml-3"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cta-section">
+	<div class="container">
+		<div class="cta position-relative">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="counter-stat">
+						<i class="icofont-doctor"></i>
+						<span class="h3">58</span>k
+						<p>Happy People</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="counter-stat">
+						<i class="icofont-flag"></i>
+						<span class="h3">700</span>+
+						<p>Surgery Comepleted</p>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="counter-stat">
+						<i class="icofont-badge"></i>
+						<span class="h3">40</span>+
+						<p>Expert Doctors</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="counter-stat">
+						<i class="icofont-globe"></i>
+						<span class="h3">20</span>
+						<p>Worldwide Branch</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="section service gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+				<div class="section-title">
+					<h2>Award winning patient care</h2>
+					<div class="divider mx-auto my-4"></div>
+					<p>
+						Our awards and accreditations are a testament to our global standards of medical care to our patients.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-laboratory text-lg"></i>
+						<h4 class="mt-3 mb-3">Laboratory services</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">
+							Heavan Hospital possesses one of the best laboratory services and facilities in the country with state-of-the art equipments and analysers ensuring safety and accuracy.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-heart-beat-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Heart Disease</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">
+							When you have heart disease, you start to be tired of everything. It’s like getting older. You become more white, and after that, grey. You have no feeling for anything.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-tooth text-lg"></i>
+						<h4 class="mt-3 mb-3">Dental Care</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">
+							The toothbrush doesn’t remove six months of tartar 30 minutes before your dental appointment!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-crutch text-lg"></i>
+						<h4 class="mt-3 mb-3">Body Surgery</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">
+							Everyone has that friend who’s every day, like, ‘I hate my nose, I hate my nose, I hate my nose.’
+							 You either need to come to peace with it and be like, alright, I hate it, but it’s part of me – or change it.
+							 So I’m not against plastic surgery, I’m against plastic surgery when it doesn’t really need to be done
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-brain-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Neurology Sargery</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">
+							As a neurosurgeon you have to come to terms with ruining people's lives and with making mistakes.
+							 But one still feels terrible about it and how much it will cost.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-dna-alt-1 text-lg"></i>
+						<h4 class="mt-3 mb-3">Gynecology</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">
+							Loving everything about yourself - even the 'unacceptable' - is an act of personal power.
+							 It is the beginning of healing.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h2>We served over 5000+ Patients</h2>
+					<div class="divider mx-auto my-4"></div>
+					<p>
+						Heavan Hospital ensures to provide the highest quality of care and a transformative experience for all your
+						healthcare needs. Our multi-specialty hospital equipped with specialised doctors,
+						and world-class technology, bring global standards of medical care to our patients.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="carouselExampleDark" class="carousel carousel-dark slide text-center" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active mt-3 mb-1" aria-current="true" aria-label="Slide 1"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class="mt-3 mb-1" aria-label="Slide 2"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class="mt-3 mb-1" aria-label="Slide 3"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" class="mt-3 mb-1" aria-label="Slide 4"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" class="mt-3 mb-1" aria-label="Slide 5"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<p class="lead font-italic mx-4 mx-md-5">
+					"They provide great service facilty consectetur adipisicing elit.
+					Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos
+					adipisci suscipit fugit placeat"
+				</p>
+				<div class="mt-5 mb-4">
+					<img src="{% static 'images/team/test-thumb1.jpg' %}"
+						class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
+						height="100" />
+				</div>
+				<h4>Amazing service!</h4>
+				<p class="text-muted mb-0">- John Partho</p>
+			</div>
+
+		  	<div class="carousel-item">
+							<p class="lead font-italic mx-4 mx-md-5">
+								We have some of the best specialty doctors from around the world,
+								they bring years of experience and offer evidence based treatment to ensure the best care for you.
+							</p>
+							<div class="mt-5 mb-4">
+								<img src="{% static 'images/team/test-thumb2.jpg' %}"
+									class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
+									height="100" />
+							</div>
+							<h4>Expert doctors!</h4>
+							<p class="text-muted mb-0">- Mullar Sarth</p>
+						</div>
+
+		  	<div class="carousel-item">
+							<p class="lead font-italic mx-4 mx-md-5">
+								We have some of the best specialty doctors from around the world,
+								they bring years of experience and offer evidence based treatment to ensure the best care for you.
+							</p>
+							<div class="mt-5 mb-4">
+								<img src="{% static 'images/team/test-thumb3.jpg' %}"
+									class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
+									height="100" />
+							</div>
+							<h4>Good Support!</h4>
+							<p class="text-muted mb-0">- Kolis Mullar</p>
+						</div>
+						
+						<div class="carousel-item">
+							<p class="lead font-italic mx-4 mx-md-5">
+								We have some of the best specialty doctors from around the world,
+								they bring years of experience and offer evidence based treatment to ensure the best care for you.
+							</p>
+							<div class="mt-5 mb-4">
+								<img src="{% static 'images/team/test-thumb4.jpg' %}"
+									class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
+									height="100" />
+							</div>
+							<h4>Nice Environment!</h4>
+							<p class="text-muted mb-0">- Partho Sarothi</p>
+						</div>
+
+						<div class="carousel-item">
+							<p class="lead font-italic mx-4 mx-md-5">
+								We have some of the best specialty doctors from around the world,
+								they bring years of experience and offer evidence based treatment to ensure the best care for you.
+							</p>
+							<div class="mt-5 mb-4">
+								<img src="{% static 'images/team/test-thumb1.jpg' %}"
+									class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
+									height="100" />
+							</div>
+							<h4>Modern Service!</h4>
+							<p class="text-muted mb-0">- Kolis Mullar</p>
+						</div>
+
+		</div>
+
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	  </div>
+
+</section>
+
+
+
+<section class="section clients">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h2>Partners who support us</h2>
+					<div class="divider mx-auto my-4"></div>
+					<p>
+						Hospital Partners of India, Inc. owns and operates general acute care hospitals and surgical hospitals in partnership with physicians. 
+						The Company extends its services throughout the country.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<div class="container">
+		<div class="row clients-logo">
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/1.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/2.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/3.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/4.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/5.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/6.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/3.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/4.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images/about/5.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="client-thumb">
+					<img src="{% static 'images//about/6.png' %}" alt="" class="img-fluid" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'common/common_master.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">About Us</span>
+          <h1 class="text-capitalize mb-5 text-lg">About Us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<h2 class="title-color">Personal care for your healthy living</h2>
+			</div>
+			<div class="col-lg-8">
+				<p>
+					Personalized Medical Assistant for all your healthcare needs.<br />
+					Book instant appointment, pay securely, eConsult with our doctors and save all your health records at one place are some of the benefits of OneHeavan App.
+					It is everything you need, to manage your family Health
+				</p>
+				<img src="{% static 'images/about/sign.png' %}" alt="" class="img-fluid">
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
+

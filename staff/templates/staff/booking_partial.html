@@ -1,0 +1,20 @@
+{% if bookings %}
+
+
+ 
+    {% for records in bookings %}
+    
+    <tr id="presc_tr">
+        <td> {{ forloop.counter }}</td>	
+        <td> {{ records.reference_no }} </td>
+        <td> {{ records.patient_name | title }} </td>		
+        <td> {{ records.doctor.doctor_name | title }} </td>
+        <td> {{ records.doctor.department.department | upper }} </td>
+        <td> {{ records.mobile }} </td>
+         
+        <td> <button type="button" class="btn btn-light"> Print </button>  </td>
+    </tr>
+    {% endfor %}
+ 
+
+{% endif %}

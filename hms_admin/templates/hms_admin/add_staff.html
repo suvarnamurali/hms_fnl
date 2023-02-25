@@ -1,0 +1,256 @@
+{% extends 'hms_admin/admin_master.html' %}
+{% load static %}
+
+{% block header %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<link rel="stylesheet" href=" {% static 'assets/css/add_doctor.css' %}">
+
+
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div>
+                    <h2 class="text-center mb-3 text-dark" >Add Staff</h2>
+
+
+                    <div style="display:flex;width:100%;">
+                        <form name="myform" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div style="width:100%;">
+                                <p class="text-dark">Name</p>
+                                <input name="name" id="sname" autofocus>
+                                <span id="s_name" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%;">
+                                <p class="text-dark">Email ID</p>
+                                <input name="id" id="email">
+                                <span id="s_email" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%;">
+                                <p class="text-dark">Address</p>
+                                <input name="address" id="sadd">
+                            </div>
+
+                            <div style="width:100%;">
+                                <p class="text-dark">Mobile Number</p>
+                                <input name="number" id="snumber">
+                                <span id="s_mobile" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%;">
+                                <p class="text-dark">Password</p>
+                                <input name="pass" id="spass">
+                                <span id="s_pass" style="font-size: small;"></span><br />
+                                <span id="checkpass1" style="font-size: small"></span><br />
+                                <span id="checkpass2" style="font-size: small"></span><br />
+                                <span id="checkpass3" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%; ">
+                                <p class="text-dark">Upload Photo</p>
+                                <input type="file" id="staff_img" name="pic">
+                            </div>
+
+                            <button type="submit" onclick="return validate()"> SUBMIT </button>
+                           
+                            
+
+                        </form>
+                        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function validate() {
+        var name = document.getElementById("sname");
+        var s_name = document.getElementById("s_name");
+            
+        var email = document.getElementById("email");
+        var s_email = document.getElementById("s_email");
+        // var emailpattern=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+            
+        var mobile = document.getElementById("snumber");
+        var s_mobile = document.getElementById("s_mobile");
+        // var regPhone=/^\d{10}$/;
+
+        var address = document.getElementById("sadd");
+        var s_address = document.getElementById("s_address");
+            
+        var password = document.getElementById("spass");
+        var s_pass = document.getElementById("s_pass");
+
+        // name 
+        
+        status = 1
+        if(name.value == ""){
+           
+           status = 0; 
+            s_name.style.display = "block";
+            s_name.style.color = "red";
+            s_name.innerHTML = "please enter name";
+            
+            
+        }else{
+            status = 1;
+            s_name.style.display = "none";
+        }
+      
+        if(email.value == ""){
+          
+            status = 0; 
+            s_email.style.display = "block";
+            s_email.style.color = "red";
+            s_email.innerHTML = "please enter email"
+        }else{
+            status = 1; 
+            s_email.style.display = "none";
+          }
+
+    
+        // mobile 
+        if(mobile.value == ""){
+            status = 0; 
+            s_mobile.style.display = "block";
+            s_mobile.style.color = "red";
+            s_mobile.innerHTML = "please enter mobile"
+        }else{
+            status = 1; 
+            s_mobile.style.display = "none";
+        }
+
+        // address 
+        // if(address.value == ""){
+        //     status = 0; 
+        //     s_address.style.display = "block";
+        //     s_address.style.color = "red";
+        //     s_address.innerHTML = "please enter address"
+        // }else{
+        //     status = 1; 
+        //     s_address.style.display = "none";
+        // }
+
+        // password 
+        if(password.value == ""){
+            status = 0; 
+            s_pass.style.display = "block";
+            s_pass.style.color = "red";
+            s_pass.innerHTML = "please enter password"
+        }else{
+            status = 1; 
+            s_pass.style.display = "none";
+        }   
+        
+        if (status == 0){
+                    
+                    return false;
+                      
+                      }
+      }
+
+      
+      
+        var sname = document.getElementById('sname')
+        var semail = document.getElementById('email')
+        var mobile = document.getElementById('snumber')
+        var Password = document.getElementById('spass')
+
+        sname.onkeyup = function(){
+            var alphabets = /[a-z A-Z]/g;
+                if(sname.value.match(alphabets)){
+                    document.getElementById('s_name').innerHTML='available'
+                    document.getElementById('s_name').style.color = 'green'
+                     }
+                    else{
+                        document.getElementById('s_name').innerHTML='please enter your name'
+                        document.getElementById('s_name').style.color = 'red'
+                        }
+        }
+        semail.onkeyup = function(){
+            var email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g;
+                if(semail.value.match(email)){
+                    document.getElementById('s_email').innerHTML='your email is valid'
+                    document.getElementById('s_email').style.color = 'green'
+                    }
+                    else{
+
+                        document.getElementById('s_email').innerHTML='please enter a valid email'
+                        document.getElementById('s_email').style.color = 'red'
+                        }
+
+        }
+        mobile.onkeyup = function(){
+            var contact = /^\d{10}/g;
+                if(mobile.value.match(contact)){
+                    document.getElementById('s_mobile').innerHTML='available'
+                    document.getElementById('s_mobile').style.color = 'green'
+                }
+                else{
+                    document.getElementById('s_mobile').innerHTML='please enter number'
+                    document.getElementById('s_mobile').style.color = 'red'
+                }
+        }
+        Password.onkeyup = function(){
+            var upper = /[A-Z]/g;
+            var lower = /[a-z]/g;
+            var numb = /[0-9]/g;
+                if(Password.value.match(upper)){
+                    document.getElementById('s_pass').innerHTML='uppercase'
+                    document.getElementById('s_pass').style.color = 'green'
+                }
+                else{
+                    document.getElementById('s_pass').innerHTML='your password must be an a uppercase letter'
+                    document.getElementById('s_pass').style.color = 'red'
+                }
+                if(Password.value.match(lower)){
+                    document.getElementById('checkpass1').innerHTML='lowercase'
+                    document.getElementById('checkpass1').style.color = 'green'
+                }
+                else{
+                    document.getElementById('checkpass1').innerHTML='your password must be an a lowercase letter'
+                    document.getElementById('checkpass1').style.color = 'red'
+                }
+                if(Password.value.match(numb)){
+                    document.getElementById('checkpass2').innerHTML='digit'
+                    document.getElementById('checkpass2').style.color = 'green'
+                }
+                else{
+                    document.getElementById('checkpass2').innerHTML='your password must be a digit'
+                    document.getElementById('checkpass2').style.color = 'red'
+                } 
+                if(Password.value.length>=8){
+                    document.getElementById('checkpass3').innerHTML='8 characters'
+                    document.getElementById('checkpass3').style.color = 'green'
+
+                }
+                else{
+                    document.getElementById('checkpass3').innerHTML='your password must be 8 characters'
+                    document.getElementById('checkpass3').style.color = 'red'
+                }
+
+            
+
+        }
+
+
+</script> 
+
+{% endblock %}

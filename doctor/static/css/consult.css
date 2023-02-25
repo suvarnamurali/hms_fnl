@@ -1,0 +1,13 @@
+.input{
+    size: 20%;
+}
+
+table{
+
+        border-spacing: collapse;
+        width: 200px;
+}
+
+label{
+    color: black;
+}

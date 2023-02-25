@@ -1,0 +1,240 @@
+{% extends 'doctor/doctor_master.html' %}
+{% load static %}
+
+{% block header %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    #pres {
+        min-height: 400px;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+<!-- Prescription  -->
+<div class="container" id="pres">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 text-center">
+            <input type="hidden" id = 'book_id' value="{{ booking_id }}" name="" id="">
+            <h3>Add Prescription</h3>
+            <div class="mt-5">
+                <table class="table  table-striped">
+                    <tr>
+                        <td><input type="text" class="form-control" placeholder="medicine name" name="medicine_name"
+                                id="medicine_name"></td>
+                        <td><input type="number" min="1" class="form-control" placeholder="days" name="days" id="days">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2">
+                            <textarea name="presc_notes" placeholder="prescription notes" class = "form-control" id="presc_notes" cols="30" rows="6"></textarea>
+                        </td>
+                    </tr>
+                    
+                    <tr align="center" >
+
+                        <td colspan = 2 align="center"><button type="button" class="btn btn-danger"
+                                id="add_prescription">ADD</button></td>
+                    </tr>
+
+                  
+
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-5 text-center">
+            <table class="table table-hover">
+                <thead>
+
+                    <th>Medicine</th>
+                    <th>Days</th>
+                     <th>Prescription Notes</th>
+                    <th>       </th>
+                </thead>
+                <tbody  id="prescription_tb">
+               
+                
+                </tbody>
+            </table>
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2"><button class="btn btn-success" type="button" id="btn_presc" >Sumbit</button></div>
+    </div>
+</div>
+
+
+<script>
+
+    let object = {}
+    
+    let object_arr = []
+    let tr_id = 1
+    let arr_index = 0
+
+    let obj_index = 0;
+    let temp_arr = []
+    let temp_index = 0
+    
+   i=0
+    $('#add_prescription').click(function () {
+
+
+
+        let medicine_name = document.getElementById('medicine_name').value
+        let days = document.getElementById('days').value
+        let presc_notes = document.getElementById('presc_notes').value
+
+        if (medicine_name == "" || days == "" || presc_notes == "") {
+            alert('Please Enter Fields')
+            return
+        }
+
+
+
+       
+
+        let new_tr = document.createElement('tr')
+        let td_medicine_name = document.createElement('td')
+        let td_days = document.createElement('td')
+        let td_medicine_time = document.createElement('td')
+        let td_presc_notes = document.createElement('td')
+
+
+        // let td_intake = document.createElement('td')
+        // let td_presc = document.createElement('td')
+        let td_btn = document.createElement('span')
+
+
+        td_medicine_name.innerHTML = medicine_name
+        td_days.innerHTML = days
+        td_presc_notes.innerHTML = presc_notes
+        new_tr.appendChild(td_medicine_name)
+        new_tr.appendChild(td_days)
+
+        new_tr.appendChild(td_presc_notes)
+
+
+        prescription_tb.appendChild(new_tr)
+        // let med_time='';
+        // console.log(med_time,'before loop')
+        // for (let i = 0; i < medicine_time.length; i++) {
+        //     if (medicine_time[i].checked === true) {
+        //         med_time += medicine_time[i].value+"-"
+               
+        //         console.log(med_time,'loop')
+        //     }
+        // }
+
+         
+        // console.log(med_time,'beforee')
+        // med_time  = med_time.substring(0,med_time.length-1)
+        // console.log(med_time,'timmeeee')
+        // td_medicine_time.innerHTML = med_time
+        // new_tr.appendChild(td_medicine_time)
+
+
+        // for (let i = 0; i < intake_time.length; i++) {
+        //     if (intake_time[i].checked == true) {
+        //         td_intake.innerHTML = intake_time[i].value
+        //         new_tr.appendChild(td_intake)
+        //         break
+        //     }
+        // }
+
+
+        td_btn.setAttribute('class', 'fa fa-trash fa-2x text-danger')
+        td_btn.setAttribute('onclick', 'deletePrescription()')
+        new_tr.appendChild(td_btn)
+        let id = "row" + tr_id
+        new_tr.setAttribute('id', id)
+        new_tr.setAttribute('class', 'presc_row')
+        tr_id++
+        new_tr.appendChild(td_btn)
+
+      
+
+        object[i]={'medicine_name' : medicine_name,'days':days,'prescription_notes':presc_notes,'booking': $('#book_id').val()}
+        
+        console.log(object[i])
+        
+       
+
+        
+       object_arr.push(object[i])
+      
+        console.log(object_arr)
+            i++
+    })
+
+
+    function deletePrescription() {
+
+        let selected_row = event.target.parentNode
+        document.getElementById('prescription_tb').removeChild(selected_row)
+
+    }
+</script>
+
+ 
+
+     
+
+<script>
+    $('#btn_presc').click(function () {
+
+        let prescription_rows = document.getElementsByClassName('presc_row')
+
+        if (prescription_rows.length > 0) {
+
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                }
+            })
+
+
+            $.ajax({
+
+                url: "{% url 'doctor:submit_prescription' %}",
+               
+                data: { 'prescription':JSON.stringify(
+                     object_arr
+                    
+                )},
+                type: 'POST',
+
+                success: function (response) {
+
+                    	$('#prescription_tb').empty()
+                }
+
+            })
+
+
+
+
+
+            console.log(prescription_rows[0].children[0].innerHTML)
+        }
+
+        else{
+            alert('Please Add Prescriptions')
+        }
+
+    })
+
+     
+</script>
+
+
+{% endblock %}

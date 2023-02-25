@@ -1,0 +1,110 @@
+{% extends 'hms_admin/admin_master.html' %} 
+
+{% load static %} 
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'assets/css/home.css' %}" />
+
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %} 
+
+{% block content %}
+
+
+<div class="card-category-5">
+
+  <ul class="all-pr-cards">
+
+    <li>
+      <div class="per-card-3">
+        <div class="card-image">
+          <!-- <span></span> -->
+          <img src="{% static 'assets/img/doctor.png' %}"  class="logo" />
+        </div>
+
+        <div class="card-content">
+          <span class="per-position"><br><br>TOTAL DOCTORS</span>          
+          <div class="social-icons">
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="per-card-3">
+        <div class="card-image">
+          <span></span>
+          <img  src="{% static 'assets/img/patient.jpg' %}" class="logo" />
+        </div>
+
+        <div class="card-content">
+          <span class="per-position"><br><br>TOTAL PATIENTS</span>
+          <div class="social-icons">
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="card-category-5">
+
+  <ul class="all-pr-cards">
+    <li>
+      <div class="per-card-3">
+        <div class="card-image">
+          <span></span>
+          <img src="{% static 'assets/img/calendar.png' %}" class="logo" />
+        </div>
+
+        <div class="card-content">
+          <span class="per-position"><br><br>TOTAL APPOINTMENTS</span>
+          <div class="social-icons">
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="per-card-3">
+        <div class="card-image">
+          <span></span>
+          <img src="{% static 'assets/img/images.png' %}" class="logo" />
+        </div>
+
+        <div class="card-content">
+          <span class="per-position"><br><br>TOTAL DEPARTMENTS</span>
+          <div class="social-icons">
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- <script src="ScriptCards.js"></script> -->
+
+{% endblock %}

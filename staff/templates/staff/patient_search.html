@@ -1,0 +1,60 @@
+{% extends 'staff/staff_masterpage.html' %} 
+{% load static %} 
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static 'css/patient_search.css' %}" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+{% endblock %} 
+
+{% block content %}
+
+<div class="container-fluid">
+	
+	<h1 style="color: rgb(6, 6, 165); text-align: center;" class="mb-2">
+		Patients List
+	  </h1>
+
+	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" />
+{% for patient in patient %}
+	<ul id="myUL">
+		<li><a href="{% url 'patient:my-pro' %}">{{patient.patient_name}}</a></li>
+		<!-- <li><a href="#">Agnes</a></li>
+
+		<li><a href="#">Billy</a></li>
+		<li><a href="#">Bob</a></li>
+
+		<li><a href="#">Calvin</a></li>
+		<li><a href="#">Christina</a></li>
+		<li><a href="#">Cindy</a></li> -->
+	</ul>
+	{% endfor %}
+</div>
+
+
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myUL");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				txtValue = a.textContent || a.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
+
+
+{% endblock %}

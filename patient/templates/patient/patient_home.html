@@ -1,0 +1,95 @@
+{% extends 'patient/patient_master.html' %} 
+{% load static %} 
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static 'css/pt_home.css' %}" />
+
+<style>
+     
+
+</style>
+
+{% endblock %} 
+
+{% block content %}
+
+
+
+<h1 style="color: rgb(6, 6, 165); margin-top: 50px; text-align: center;"
+  class="mb-4">
+  Welcome  {{ patient_name | title }}
+</h1>
+
+  
+  <div class="card-category-5">
+  
+	<ul class="all-pr-cards">
+	   <li>
+        <div class="per-card-3" style="height: 320px;">
+            <div class="card-image">
+                <span></span>
+                <img src="{% static 'assets/img/calendar.png' %}" height="200px" class="logo" />
+              </div>
+            <div class="card-body">
+              <h5 class="card-title">Last Appointment</h5>
+              <p class="card-text"> Reference No : {{last_booking.0.reference_no }}</p>
+              <p class="card-text"> Booking Date : {{last_booking.0.booking_date }}</p>
+              <p class="card-text"> Time : {{last_booking.0.time }} </p>
+              <p class="card-text"> Status : {{last_booking.0.status }} </p>
+               
+            </div>
+          </div>
+       </li>
+  
+	  
+       <li>
+        <a href="{% url 'patient:booking_history' %}">
+        <div class="per-card-3" style="height: 320px;">
+            <div class="card-image">
+                <span></span>
+                <img src="{% static 'assets/img/calendar.png' %}" height="200px" class="logo" />
+              </div>
+            <div class="card-body">
+              <h5 class="card-title">My Bookings</h5>
+              <p class="card-text"> Total Bookings : {{ booking }}</p>
+              <p class="card-text"> Cancelled Bookings : {{ cancelled_count }} </p>
+              
+               
+            </div>
+          </div>
+        </a>
+       </li>
+	</ul>
+  </div>
+
+
+{% endblock %}
+
+<!-- <script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function () {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script> -->

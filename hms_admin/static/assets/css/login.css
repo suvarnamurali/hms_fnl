@@ -1,0 +1,107 @@
+/* image source: https://www.pexels.com/photo/blooming-sakura-tree-in-daylight-6830332/ */
+
+body {
+    background-image:   url(../img/slider-bg-1.jpg);    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+p {
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    text-shadow: 
+     2px 2px 0 rgb(90, 144, 210), 
+     2px -2px 0 rgb(90, 144, 210),
+    -2px 2px 0 rgb(90, 144, 210),
+    -2px -2px 0 rgb(90, 144, 210),
+     2px 0px 0 rgb(90, 144, 210),
+     0px 2px 0 rgb(90, 144, 210), 
+    -2px 0px 0 rgb(90, 144, 210),
+     0px -2px 0 rgb(90, 144, 210);
+}
+
+#admin_login_form {
+    background-color: hwb(198 87% 9% / 0.527);
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgb(4, 5, 13);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 30%;
+    line-height: 0.6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input {
+  border-radius: 5rem;
+  border: none;
+  height: 40px;
+  width: 280px;
+}
+
+.remember {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-right: 10rem;
+    text-align: center;
+    padding-left: 120px;
+}
+
+#remember {
+    height: 15px;
+    width: 15px;
+    margin-top: -0.65rem;
+    margin-left: 170px;
+}
+
+.label{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 100; 
+}
+
+a {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: 900;
+    background-color: rgb(90, 144, 210);
+    color: white;
+    margin-bottom: 16px;
+    margin-top: 30px;
+    border-radius: 20px;
+    height: 35px;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+#signup{
+    
+}
+/* #error {
+  text-align: center;
+  width: 35%;
+  margin: 0 auto;
+  background-color: rgb(90, 144, 210);
+  color: white;
+  font-family: Helvetica;
+  font-size: 2rem;
+} */

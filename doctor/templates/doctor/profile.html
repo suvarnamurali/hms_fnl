@@ -1,0 +1,169 @@
+{% extends 'doctor/doctor_master.html' %}
+
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href=" {% static 'css/dr_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="prof_section">
+
+    <div class="container" >
+
+        <div class="main-body">
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{ doctor.pic.url }}" alt="Admin" class="rounded-circle"
+                                    width="150">
+                                <div class="mt-3">
+                                    {{ doctor.doctor_name }}
+                                    <h4>  </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg> &ensp;
+                                    <a href="{% url 'doctor:appointment' %}"> Appointments</a> 
+                                    <!-- <a href="{% url 'doctor:consulting' %}"> Consulting</a>  -->
+
+                                </h5>
+
+                            </li>
+                          
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                                    </svg> &ensp;
+                                    <a href="{% url 'doctor:search_patients' %}"> Patients </a> 
+                                </h5>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                                    </svg> &ensp;
+                                  <a href="{% url 'doctor:change_pswd' %}">Change Password</a>  
+                                </h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-8"> 
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Name</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    
+                                       {{ doctor.doctor_name }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Email ID</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.doctor_email }}
+                                </div>                                
+                            </div>
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Contact Number</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.doctor_contact }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Department</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.department.department }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Qualification</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.qualification }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Experience</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.experience }}
+                                     
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Consultancy Fees</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ doctor.fee }}
+                                     
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary "  
+                                        href="{% url 'doctor:edit_profile' %}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'doctor/doctor_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href=" {% static 'css/dr-chg-pwd.css' %}">
+<script src=" {% static 'js/dr-chg-pwd.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<br><br><br>
+<section class="section mb-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-11 text-center">
+
+                
+                <div id="container">
+                    <div id="header"> </div>
+                    <div id="form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="password" placeholder="Old Password" name ="old_passwd"  id="passOld" > <br><br>
+
+                            <input type="password" placeholder="New Password" name ="new_passwd" id="passOne" > <br><br>
+
+                            <input type="password" placeholder="Confirm Password" name ="confirm_passwd" id="passTwo"> <br><br><br>
+                            <div class="pass-sub">
+                                <a href="">
+                                    <input type="submit" value="Submit" id="btn1" class="btn-primary"> </a>
+                            </div>
+                        </form>
+                        <p class="text-success">{{ success_msg }}</p>
+                        <p class="text-danger">{{ error_msg }}</p>
+                    </div>
+                    <div id="footer" class="incorrect"></div>
+                </div>
+            </div>
+        </div>
+    </div> <br><br><br>
+    </div>
+</section>
+<br><br><br>
+  {% endblock %}

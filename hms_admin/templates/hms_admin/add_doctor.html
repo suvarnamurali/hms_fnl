@@ -1,0 +1,153 @@
+{% extends 'hms_admin/admin_master.html' %}
+{% load static %}
+
+{% block header %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<link rel="stylesheet" href=" {% static 'assets/css/add_doctor.css' %}">
+
+<style>
+    option{
+        color: black;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div>
+                    <h2 class="text-center mb-3 text-dark">Add Doctor</h2>
+
+
+                    <div style="display:flex;width:100%;">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <p class="text-danger" textalign="top">{{ error_message }}</p> 
+                            <p class="text-success" textalign="top">{{ success_message }}</p>
+                            <div style="width:100%;">
+
+                              <label class="text-dark">Name</label>
+                                <input name="doctor_name" required autofocus type="text" id="d_name">
+                                <span id="checkname" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%;">
+                               
+                                 
+                                <label class="text-dark">Email ID</label>
+                                <input name="doctor_email" required type="email" id="d_email">
+                                <span id="demail" style="font-size: small"></span>
+                            </div>
+
+                          
+
+                            <div style="width:100%;">
+                                <label class="text-dark">Contact Number</label>
+                                <input name="doctor_number" required type="number" id="d_number">
+                                <span id="checkno" style="font-size: small"></span>
+                            </div>
+
+                            <div style="width:100%;">
+                                <label class="text-dark">Department</label>                            
+                                <select id="select" name="doctor_dept" required>
+                                    <option  selected disabled>Select Department</option>
+                                   
+                                    {% for dept in departments %} 
+                                            <option value="{{ dept.id }}">{{ dept.department }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>                     
+
+                            <div style="width:100%;">
+                                <label class="text-dark">Qualification</label>
+                                 <select name="qaulification" class="form-control text-dark" id="select" required>
+                                    <option value="select Qualification"> select Qualification</option>
+                                    <option value="MBBS">MBBS</option>
+                                    <option value="MD">MD</option>
+                                   
+                                 </select>
+                            </div>
+                            <div style="width:100%;">
+                                <label class="text-dark">Experience</label>
+                                <input name="experience" required type="number">
+                            </div>
+                            <div style="width:40%;">
+                                <label class="text-dark">Consultancy Fee</label>
+                                <input name="fees" required>
+                            </div>
+                            <div style="width:50%; padding-left: 10%;">
+                                <label class="text-dark">Upload Photo</label>
+                                <input type="file" id="doctor_img" name="doctor_photo">
+                            </div>
+
+                          
+                                <button type="submit"> SUBMIT </button>
+                            
+
+                        </form>
+                        <script>
+
+                            var dname = document.getElementById('d_name')
+                            var demail = document.getElementById('d_email')
+                            var number = document.getElementById('d_number')
+
+                        dname.onkeyup = function(){
+                            var alphabets = /[a-z A-Z]/g;
+                            if(dname.value.match(alphabets)){
+                                document.getElementById('checkname').innerHTML='available'
+                                document.getElementById('checkname').style.color = 'green'
+                            }
+                            else{
+                                document.getElementById('checkname').innerHTML='please enter your name'
+                                document.getElementById('checkname').style.color = 'red'
+                            }
+                        }
+                        demail.onkeyup = function(){
+
+                            var email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g;
+                            if(demail.value.match(email)){
+
+                                document.getElementById('demail').innerHTML='your email is valid'
+                                document.getElementById('demail').style.color = 'green'
+                            }
+                            else{
+
+                                document.getElementById('demail').innerHTML='please enter a valid email'
+                                document.getElementById('demail').style.color = 'red'
+                            }
+
+                        }
+                        number.onkeyup = function(){
+                            var contact = /^\d{10}/g;
+                            if(number.value.match(contact)){
+                                document.getElementById('checkno').innerHTML='available'
+                                document.getElementById('checkno').style.color = 'green'
+                            }
+                            else{
+                                document.getElementById('checkno').innerHTML='please enter number'
+                                document.getElementById('checkno').style.color = 'red'
+                            }
+                        }
+
+
+                        </script>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

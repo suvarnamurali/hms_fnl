@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <!-- Select Box  -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+    <!-- Home icon  -->
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+  
+
+    <link rel="stylesheet" href="{% static 'css/appt_1.css' %}">
+
+    {% block header %}
+    <style>
+        #btn_next{
+            display: none;
+        }
+    </style>
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <!-- header container -->
+        <div class="row" id="header_container">
+            <div class="col-11">
+                <h1>BOOK APPOINTMENT</h1>
+            </div>
+            {% if 'patient' in request.session %}
+            <div class="col-1 mt-3">
+                <a href="{% url 'patient:home' %}"><i class="fa fa-home" style="font-size:48px;color:white"></i></a>
+            </div>
+            {% else %}
+            <div class="col-1 mt-3">
+                <a href="{% url 'staff:staff_home' %}"><i class="fa fa-home" style="font-size:48px;color:white"></i></a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- header container end-->
+
+        {% block content %}
+
+        <!-- bg-image container -->
+        <div class="row" id="image">
+            <div class="col-12">
+
+            </div>
+        </div>
+        <!-- bg-image container end-->
+
+
+        <!-- select container -->
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden"   name="selected_doctor" id="selected_doctor">
+            <div class="row select_tab" id="select_container">
+
+                <div class="col-3 s-1"></div>
+                <div class="col-3 s-2">
+                    <div>
+                        <select name="department" id="department">
+                            <option disabled selected >Select Department</option>
+
+                            {% for dept in departments %}
+                            <option value="{{ dept.id }}">{{ dept.department | title }}</option>
+                             {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3 s-3">
+                    <div>
+                        <select name="doctor" id = "doctor">
+                             
+                             
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3 s-4"></div>
+
+            </div>
+            <!-- row end  -->
+
+
+            <div class="row next">
+                <div class="col-5 n-1"></div>
+                <div class="col-2 n-2">
+                    <button type="button" id="btn_next"  class="btn btn-primary nxt">NEXT</button>
+                </div>
+                <div class="col-5 n-3"></div>
+            </div>
+        </form>
+        <!-- select container end-->
+
+        {% endblock %}
+
+    </div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+ 
+
+    <script>
+    
+      var selected_doctor_id;
+
+        $('#department').change(function(){
+
+             id = $(this).val()
+             $.ajaxSetup({
+            headers: {
+              "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+            }
+        })
+
+             $.ajax({
+
+                url : "{% url 'patient:get_doctors' %}",  
+                type : 'POST',
+                data : {
+                    id : id
+                },
+
+                success : function(response){
+
+                    $('#doctor').empty()
+                    $('#doctor').append('<option selected disabled> Select Doctor </option>')
+                    for(var i = 0; i< response.doctors.length; i++){
+
+                        
+                        $('#doctor').append('<option value = '+response.doctors[i].dr_id + '>'+ response.doctors[i].dr_name.toUpperCase() + ' </option>' )
+                    
+                        
+                    }
+                }
+
+
+             })
+        })
+
+        $('#doctor').change(function(){
+            let id = $(this).val()
+            selected_doctor_id = id
+            $('#selected_doctor').val(id)
+        })
+
+
+        $('button').click(function(){
+
+            window.location.href = "{% url 'patient:appointment_2' %}?dr=" + selected_doctor_id
+        })
+    </script>
+
+    <script>
+      $('select').change(function(){
+console.log('dep',$('#department').val())
+console.log('doc',$('#doctor').val())
+
+        // alert($('#department').val() != 'Select Department' && $('#doctor').val() != 'Select Doctor' )
+       
+        if(($('#department').val() != null) &&($('#doctor').val() != null) ){
+
+            $('#btn_next').show()
+            console.log('yes')
+        }
+        else{
+            $('#btn_next').hide()
+            console.log('no')
+        }
+
+      })
+    </script>
+
+</body>
+
+</html>

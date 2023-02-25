@@ -1,0 +1,80 @@
+{% extends 'staff/staff_masterpage.html' %}
+{% load static %}
+
+{% block header %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+#presc_search{
+  margin-left:400px;
+  margin-top: 20px;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<h1 style="color: rgb(6, 6, 165); text-align: center;">
+  Search Prescription
+</h1>
+<div><input id="presc_search" type="search" placeholder="enter reference no" class="form-control text-center w-25"></div>
+
+<section class="section">
+
+    <div class="container"> 
+
+      <div class="row">
+          <table class="table table-primary table-striped" id = "presc_tb">
+            <thead>
+              
+              <tr>
+                  <th>Sl No</th>
+                  <th>Reference No</th>
+                  <th>Patient name</th>
+                  <th>Doctor name</th>
+                  <th>Department</th>
+                  <th>Contact number</th>
+                  
+                  <th>Prescription</th>
+              </tr>
+
+              </thead>
+              <tbody id="result_tr">
+                {% include 'staff/booking_partial.html' %}
+            </tbody>
+          
+            
+            </table>    
+      </div>
+    </div>
+  </section>
+
+  <script>
+    $('#presc_search').keypress(function(){
+
+      $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": '{{csrf_token}}'
+                    }
+                    })
+
+        $.ajax({
+
+            url: "{% url 'staff:booking_list' %}",
+            type: 'POST',
+            data: {
+                  'reference_no':$('#presc_search').val()
+            },
+
+            success: function (response) {
+                let result = response.result
+                 $('#result_tr').html(result)
+            }
+          })
+       
+    })
+  </script>
+
+{% endblock %}

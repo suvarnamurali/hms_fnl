@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="container row col-12 col-sm-12 justify-content-center" id="parsi">
+        <div class="card" style="width:18 rem;">
+            <img class="card-img-top" src="#" alt="">
+            <div class="card-body">
+                <h1>This is an card</h1>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing
+                    elit. Tempore, repudiandae neque? Placeat harum veniam omnis dolorum
+                    necessitatibus vitae, nisi ducimus illum.</p>
+                <button type="button" class="btn btn-primary" onclick="myclick()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function myclick() {
+            var x = 1
+            if (x != null) {
+                var main = document.getElementById("parsi");
+                let num = parseInt(x);
+                var i;
+                const red = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore,";
+                var div = [];
+                let session_no = 0;
+                for (i = 0; i < num; i++) {
+                    session_no += 1
+                    console.log(session_no)
+                    div.push(document.createElement("div"));
+                    div[i].setAttribute("class", "card col-12 col-sm-3 ml-2 mt-3");
+                    div[i].setAttribute("style", "width:18 rem;");
+                    
+                    var innerDiv = document.createElement("div");
+                    innerDiv.setAttribute("class", "card-body");
+                    var h1 = document.createElement("h1");
+                    h1.textContent = "Session " + session_no;
+                    var hr = document.createElement("hr");
+                    // p1.setAttribute("class","card-text");
+                    // p1.textContent=red;
+                    innerDiv.appendChild(h1);
+                    innerDiv.appendChild(hr);
+
+                    let btn_div = document.createElement("div")
+                    let btn_texttArr =['09:00 AM', '09:10 AM', '09:20 AM', '09:30 AM', '09:40 AM', '09:50 AM', '10:00 AM']
+                    for (let j = 0; j < btn_texttArr.length; j++) {
+                        let btn = document.createElement("button")
+                        btn.textContent = btn_texttArr[j].toString()
+                        btn_div.appendChild(btn);
+                        innerDiv.appendChild(btn_div);
+                        console.log('hello')
+                    }
+
+                    
+                    div[i].appendChild(innerDiv);
+                    main.appendChild(div[i]);
+                    
+
+                }
+
+
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

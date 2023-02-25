@@ -1,0 +1,64 @@
+{% extends 'common/index.html' %}
+{% load static %}
+
+{% block header %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-title bg-1">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block text-center">
+					<h1 class="text-capitalize mb-5 text-lg">Departments</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="section service-2">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+			</div>
+		</div>
+
+		<div class="row">
+			{% for department in departments %}
+			<div class="col-lg-4 col-md-6 ">
+				<div class="department-block mb-5">
+					<a href="{% url 'common:department_details' department.id %}"> <img src="{{ department.pic.url }}"
+							alt="" width="350px" height="250px"> </a>
+					<div class="content">
+ 
+							<h4 class="mt-4 mb-2 title-color">{{ department.department | title }}</h4>
+				 
+						<p class="mb-4">{{ department.description }}</p>
+						 
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+
+
+
+
+
+
+
+
+
+	</div>
+</section>
+
+
+
+{% endblock %}

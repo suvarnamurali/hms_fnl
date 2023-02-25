@@ -1,0 +1,50 @@
+{% extends 'patient/patient_home.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <h1 class="text-capitalize mb-5 text-lg">My Prescriptions</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="appoinment section">
+  <div class="container">
+    <div class="row">
+		<table class="table table-primary table-striped">
+			<tr>
+				<th> Doctor </th>
+				<th> Appointment Date </th>
+				<th> Appointment Time </th>
+				<th> Diseases </th>
+				<th> Allergies </th>
+				<th> Prescriptions </th>
+				<th> Payment </th>
+			</tr>
+			<tr>
+				<td> Thomas Henry </td>
+				<td> 21-08-2022 </td>
+				<td> 10:00:00 </td>
+				<td> Congenital heart disease </td>
+				<td> rhinoconjuctivitis </td>
+				<td> trandolapril <br> (Mavik) </td>
+				<td> <button type="button" class="btn btn-light"> Pay Bill </button>  </td>
+			</tr>
+		  </table>    
+    </div>
+  </div>
+</section>
+
+{% endblock %}

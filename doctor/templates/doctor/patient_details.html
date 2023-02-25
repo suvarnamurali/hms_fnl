@@ -1,0 +1,51 @@
+{% extends 'doctor/doctor_master.html' %}
+{% load static %}
+
+{% block header %}
+<style>
+    #pres {
+        min-height: 400px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div>
+        <a href="{% url 'doctor:add_prescription' booking_record.id %}" class="btn btn-danger">Add Prescription</a>
+    </div>
+    <div id="patient_details">
+
+        <table class="table table-hover">
+
+            <tr>
+                <td>Reference No :</td>
+                <td>{{ booking_record.reference_no }}</td>
+            </tr>
+            <tr>
+                <td>Patient Name :</td>
+                <td>{{ booking_record.patient_name | title }}</td>
+            </tr>
+            <tr>
+                <td>Gender :</td>
+                <td>{{ booking_record.gender | title }}</td>
+            </tr>
+            <tr>
+                <td>Age :</td>
+                <td>{{ booking_record.age }}</td>
+            </tr>
+             
+            
+            <tr>
+                <td>Phone :</td>
+                <td> {{ booking_record.mobile }}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

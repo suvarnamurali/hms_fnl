@@ -1,0 +1,152 @@
+{% extends 'patient/patient_home.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href=" {% static 'css/pt_prof.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<section class="prof_section">
+
+    <div class="container">
+
+        <div class="main-body">  
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{ patient.pic.url }}" alt="photo" class="rounded-circle"
+                                    width="150">
+                                <div class="mt-3">
+                                    <h4>{{ patient.patient_name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg> &ensp;
+                                  <a href="{% url 'patient:booking_history' %}">Appointments</a>  
+                                </h5>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg> &ensp;
+                                  <a href="{% url 'patient:bookings' %}">Bookings</a>  
+                                </h5>
+                            </li>
+              
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h5 class="mt-1 mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-activity">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                                    </svg> &ensp;
+                                  <a href="{% url 'patient:chg-pwd' %}">Change Password</a>  
+                                </h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.patient_name }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.address }}                           
+                                </div>
+                        
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Age</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.age }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Gender</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.gender }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Blood Group</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.blood_grp }}
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-0">Phone</h6>
+                                </div>
+                                <div class="col-sm-8 text-secondary">
+                                    {{ patient.phone }}
+                                     
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary " target="__blank"
+                                        href="{% url 'patient:edit' %}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

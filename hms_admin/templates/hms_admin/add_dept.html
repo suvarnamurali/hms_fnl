@@ -1,0 +1,40 @@
+{% extends 'hms_admin/admin_master.html' %}
+{% load static %}
+
+{% block header %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+ 
+
+
+{% endblock %}
+
+{% block content %}
+<h2 class="text-dark heading">Add Department</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="dept" class="text-dark">Department</label>
+      <input type="text" class="form-control" id="dept" name="dept"  placeholder="Department name">
+    </div>
+    <div class="form-group">
+      <label for="desc"  class="text-dark">Description</label>
+       <textarea name="desc" id="desc" cols="30" rows="6" class="form-control" ></textarea>
+    </div>
+     
+    <div class="form-group">
+        <label for="pic"  class="text-dark">Upload Pic</label>
+        <input type="file" name="pic" class="form-control">
+      </div>
+       
+    <button type="submit" class="btn btn-primary">Submit</button>
+   <p class="text-danger">{{ error_message }}</p> 
+   <p class="text-success">{{ success_message }}</p> 
+  </form>
+ 
+
+{% endblock %}

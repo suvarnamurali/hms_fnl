@@ -1,0 +1,59 @@
+{% extends 'common/index.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <!-- <span class="text-white">Doctor Details</span> -->
+          <h1 class="text-capitalize mb-5 text-lg">{{ doctor.doctor_name | title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section doctor-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="doctor-img-block">
+					<img src="{{ doctor.pic.url }}" alt="" class="img-fluid w-100">
+
+					<div class="info-block mt-4">
+						<h4 class="mb-0">{{ doctor.doctor_name | title }}</h4>
+						<p>{{ doctor.qualification |  upper }}</p>
+
+						 
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-8 col-md-6">
+				<div class="doctor-details mt-4 mt-lg-0">
+					<h2 class="text-md">About Me</h2>
+					<div class="divider my-4"></div>
+					 <p>Name : {{ doctor.doctor_name | title }}</p>
+					 <p>Email : {{ doctor.doctor_email }} </p>
+					 <p>Qualification : {{ doctor.qualification }} </p>
+					 <p>Contact : {{ doctor.doctor_contact }} </p>
+					 <p>Fee : Rs {{ doctor.fee }}</p>
+					 <br>
+
+					<a href="{% url 'common:make_appointment' %}" class="btn btn-main-2 btn-round-full mt-3">Make an Appoinment<i class="icofont-simple-right ml-2  "></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

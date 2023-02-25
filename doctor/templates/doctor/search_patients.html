@@ -1,0 +1,65 @@
+{% extends 'doctor/doctor_master.html' %}
+{% load static %}
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static 'css/pt_search.css' %}" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+	<h1 style="color: rgb(6, 6, 165); text-align: center;" class="mb-2">
+		Patients List
+	</h1>
+
+	<input type="text"   id = "txt_search" class="form-control"  placeholder="Search for names.." title="Type in a name" />
+
+	<ul id="patients_list">
+		 
+
+	</ul>
+</div>
+
+
+
+<script>
+
+	$('#txt_search').keydown(function () {
+		 
+		$.ajax({
+
+			url: "{% url 'doctor:get_patients' %}",
+			data: {
+				'search_text':  $(this).val(),
+			},
+			method: 'GET',
+
+			success : function(response){
+
+				 let result_set = response.search_result
+				 
+				 if(result_set.length > 0){
+					$('#patients_list').empty()
+					for(let i= 0; i<result_set.length; i++){
+						$('#patients_list').append('<li><a href="/doctor/patient/' + result_set[i].id+'">'+result_set[i].p_name+'</a></li>')
+
+					}
+				 }
+			}
+
+		})
+	})
+
+
+
+</script>
+
+
+{% endblock %}

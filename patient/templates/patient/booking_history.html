@@ -1,0 +1,215 @@
+{% extends 'patient/patient_master.html' %}
+{% load static %}
+
+{% block header %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+  @media screen {
+    #printSection {
+        display: none;
+    }
+  }
+  
+  @media print {
+    body * {
+      visibility:hidden;
+    }
+    #printSection, #printSection * {
+      visibility:visible;
+    }
+    #printSection {
+      position:absolute;
+      left:0;
+      top:0;
+    }
+  }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+
+<h1 style="color: rgb(6, 6, 165); text-align: center;">
+  Booking History
+</h1>
+
+<section class="appoinment section">
+  <div class="container">
+    <div class="row">
+       
+
+      {% include 'patient/booking_partial.html' %}
+
+      <!-- Modal -->
+      <div class="modal fade bg-transparent" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Prescription</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-info ">
+
+              <div class="container">
+
+                <div class="row" id="row1">
+                 
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <h4>List of prescribed medications</h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <table class="table table-bordered table-striped-columns">
+                      <thead>
+                        <th>Sl.No</th>
+                        <th>Medicine</th>
+                        <th>Days</th>
+                        <th>Prescription Notes</th>
+                        
+                      </thead>
+
+
+                      <tbody id="tbody">
+                       
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <h5 id="dr_contact">Dr.Contact No: </h5>
+                  </div>
+
+                  <div class="col-6">
+                    <h5 id = "dr_email">E-mailid :  </h5>
+                  </div>
+                </div>
+
+
+              </div>
+
+          
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="btn_print">Print</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal  -->
+
+      <!-- ajax  -->
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+      <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+      <script>
+        function get_pre(bid) {
+
+          // let tr_nodes = v.parentElement.parentElement.childNodes
+          // console.log(v)
+          // let bid= parseInt (tr_nodes[5].innerHTML)
+
+          let sno = 0
+          $.ajaxSetup({
+            headers: {
+              "X-CSRFToken": '{{ csrf_token }}'
+            }
+          })
+
+
+          $.ajax({
+
+            url: "{% url 'patient:view_Prescription' %}",
+            // contentType: 'application/json',
+            // dataType: 'json',
+            data: {
+              'bid': bid
+            },
+            type: 'POST',
+
+            success: function (response) {
+              console.log(response.data)
+              console.log(response.booking)
+              data = response.data
+              doctor_name1=response.doctor_name
+              booking=response.booking
+
+              $('#row1 div ').remove()
+              $('#row1').append(`
+              
+                                <div class="col-6">
+                                  <h5>Ref.No : ${booking.reference_no} </h5>
+                                  <h5>Patient name: ${booking.patient_name.toUpperCase()}</h5>
+                                </div>
+                                <div class="col-6">
+                                  <h5>Date : ${booking.booking_date} </h5>
+                                  <h5>Doctor name: ${doctor_name1.toUpperCase()} </h5>
+                                </div>
+              
+              `)
+              $('#tbody tr').remove()
+              for (i of data) {
+                sno++
+                $('#tbody').append(`
+                                  <tr>
+                                      <td>${sno}</td>
+                                      <td>${i.medicine_name}</td>
+                                      <td>${i.days}</td>
+                                      <td>${i.prescription_notes}</td>
+                                      
+                                  </tr>`)
+
+              }
+
+               
+              document.getElementById('dr_contact').innerHTML += response.contact_no
+              document.getElementById('dr_email').innerHTML += response.email
+            }
+
+          })
+
+        }
+
+      
+    
+      
+      document.getElementById("btn_print").onclick = function () {
+        printElement(document.getElementById("exampleModal"));
+      };
+      
+      function printElement(elem) {
+        var domClone = elem.cloneNode(true);
+      
+        var $printSection = document.getElementById("printSection");
+      
+        if (!$printSection) {
+          var $printSection = document.createElement("div");
+          $printSection.id = "printSection";
+          document.body.appendChild($printSection);
+        }
+      
+        $printSection.innerHTML = "";
+        $printSection.appendChild(domClone);
+        window.print();
+      }
+      </script>
+
+      <!-- ajax  -->
+
+
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

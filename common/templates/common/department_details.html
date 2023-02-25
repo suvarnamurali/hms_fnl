@@ -1,0 +1,101 @@
+{% extends 'common/index.html' %}
+{% load static %}
+
+{% block header %}
+
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+  rel="stylesheet"
+/>
+
+<script src=" {% static 'js/doctor_cards.js' %}"></script>
+
+
+<link rel="stylesheet" href="{% static 'css/doctor_cards.css' %}" />
+
+<style>
+
+</style>
+
+<script>
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+<section class="page-title bg-1">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block text-center">
+					<h1 class="text-capitalize mb-5 text-lg">{{ department.department }}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="section department-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-10">
+				<div class="department-content mt-5">
+					<h3 class="text-md">Medecine and Health</h3>
+					<div class="divider my-4"></div>
+					<p class="lead">{{ department.description }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+
+<section class="section team">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="section-title text-center">
+					<h3 class="text-md" style="align-content: left;">Our Doctors</h3>
+					<div class="divider mx-auto my-4"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			{% for doctor in doctors %}
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<a href="{% url 'common:doctor_details' doctor.id %}" style="text-decoration: none;">
+				<div class="team-block mb-5 mb-lg-0">
+					<img src="{{ doctor.pic.url }}" alt="" class="img-fluid w-100">
+
+					<div class="content">
+						<h4 class="mt-4 mb-0"> {{ doctor.doctor_name | title }} </h4>
+						<p> {{ doctor.qualification }} </p>
+					</div>
+				</div>
+			</a>
+			</div>
+
+			{% endfor %}
+
+		</div>
+	</div>
+</section>
+
+
+
+
+{% endblock %}
+

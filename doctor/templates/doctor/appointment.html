@@ -1,0 +1,70 @@
+{% extends 'doctor/doctor_master.html' %}
+{% load static %}
+
+{% block header %}
+<style>
+	#appts {
+		min-height: 400px;
+	}
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1 style="color: rgb(6, 6, 165); margin-top: 50px; text-align: center;" class="mb-4"> Appointment List </h1>
+
+<section>
+
+	<!-- My Appointments  -->
+	<div class="container" id="appts">
+		<div class="row justify-content-center">
+			<div class="col-lg-10 text-center">
+				<div class="mt-5">
+
+					{% if booking_records %}
+					<table class="table table-primary table-striped">
+						<tr>
+							<th>Sl No</th>
+							<th> Reference No</th>
+							<th>Patient Name</th>
+							 
+							 
+							<th> Time </th>
+							<th></th>
+						</tr>
+						{% for record in booking_records %}
+						<tr>
+							<td>{{ forloop.counter }}</td>
+							<td>{{ record.reference_no }}</td>
+							<td> {{ record.patient_name | title }} </td>
+						 
+							 
+							<td> {{ record.time }} </td>
+
+							<td><a href="{% url 'doctor:patient_details' record.id %}" class="btn btn-danger">Details</a></td>
+							 
+						</tr>
+
+						{% endfor %}
+
+					</table>
+
+					{% else %}
+
+					<h2> No Records Found</h2>
+
+					{% endif %}
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+    <button onclick="addData()">add</button>
+    <div id="outer-div">
+
+        <div id="main-div">
+
+
+        </div>
+    </div>
+
+    <script>
+
+        function createDiv(session_no, btn_data) {
+            var main = document.getElementById("outer-div");
+            var main = document.getElementById("main-div");
+            let div = document.createElement("div")
+            let h3 = document.createElement("h3")
+
+            let divs = []
+
+            for (let j = 0; j < 5; j++) {
+                h3.textContent = 'session 1'
+                div.appendChild(h3)
+                div.appendChild(document.createElement("hr"))
+                div.appendChild(document.createElement("br"))
+                let btn_div = document.createElement("div")
+
+                // for (let i = 0; i < 10; i++) {
+                //     let btn = document.createElement("button")
+                //     btn.setAttribute('class', 'btn btn-primary')
+                //     btn.textContent = '09:00 Am'
+                //     btn_div.appendChild(btn)
+                // }
+                div.appendChild(btn_div)
+                main.appendChild(div)
+            }
+
+
+
+
+            
+        }
+
+        createDiv('session1', '09:00 Am')
+        // createDiv('session2', '09:00 Am')
+
+        function addData() {
+
+            // var main = document.getElementById("main-div");
+            // var div = [];
+
+            // div.push(document.createElement("div"));
+            // for (i = 0; i < 4; i++) {
+            //     div[i].setAttribute("class", "card col-12 col-sm-3 ml-2 mt-3");
+            //     div[i].setAttribute("style", "width:18 rem;");
+
+            //     // div[i].innerHTML = 'heelooo'
+            //     // var p = document.createElement("p")
+            //     // p.textContent = 'session 1'
+            //     // div[i].appendChild(p)
+
+            //     // div[i].appendChild(document.createElement("hr"))
+            //     // var btn = document.createElement("button")
+            //     // btn.setAttribute('class','btn btn-primary')
+            //     // btn.textContent = '09:00 AM'
+            //     // div[i].appendChild(btn)
+            //     // main.appendChild(div[i])
+
+            // }
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

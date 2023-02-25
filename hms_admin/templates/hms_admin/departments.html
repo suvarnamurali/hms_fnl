@@ -1,0 +1,53 @@
+{% extends 'hms_admin/admin_master.html' %}
+{% load static %}
+
+{% block header %}
+
+<link rel="stylesheet" href=" {% static 'assets/css/view_admin.css' %}">
+
+<style>
+
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center mt-5">
+                <div>
+                    <h2>Department Records</h2>
+                    <div class="mt-5" style="width:85%; margin-left: 7%;">
+                        <table style="border-spacing: 30px;" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>SI No:</th>
+                                    <th> Photo </th>
+                                    <th> Name </th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            {% for department in departments %}
+                            <tbody class="dept">
+                           
+                               <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                     <td><img src="{{ department.pic.url }}" class="img-circle" height="50px" width="50px"></td>
+                                    <td>{{ department.department }}</td>
+                                    <td>{{ department.description }}</td>    
+                               </tr>  
+                                                 
+                            </tbody>
+                            {% endfor %}  
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
