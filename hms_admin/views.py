@@ -6,7 +6,7 @@ from .models import * # we give * to import all model class from models.py
 from django.core.mail import send_mail
 from random import randint
 from django.conf import settings # importing settings.py
-import string
+from common.auth_guard import auth_admin
 # Create your views here.
 
 def admin_login(request):
@@ -19,6 +19,7 @@ def admin_login(request):
         try: 
             data = AdminLogin.objects.get(admin_id = user_name ,
             admin_password = password)       # model name properties (models) = variablename(views)
+            request.session['admin'] = True
             return redirect('hms_admin:admin_home') # redirect to home page
 
         except Exception as e:
@@ -28,16 +29,24 @@ def admin_login(request):
             # we pass data form views to html in dictionary format in render()
     return render(request,'hms_admin/admin_login.html',{'error_msg':msg})   # keyvalue {'error_msg':msg}
 
+@auth_admin
 def admin_home(request):
-    return render(request,'hms_admin/admin_home.html')
+    doctors_count = Doctor.objects.filter(status = 'active').count()
+    patients_count = Patient.objects.filter(status = 'active').count()
+    department_count = Department.objects.all().count()
+    
+    return render(request,'hms_admin/admin_home.html',{'doctors_count' : doctors_count,'patients_count': patients_count,'department_count': department_count})
 
+@auth_admin
 def chg_pwd(request):
     return render(request,'hms_admin/admin_change_password.html')
 
+@auth_admin
 def view_appointments(request):
     appointments = Booking.objects.all()
     return render(request,'hms_admin/view_appointments.html',{'appointments':appointments})
 
+@auth_admin
 def add_doctor(request):
     error_msg = ''
     success_msg = ''
@@ -81,6 +90,7 @@ def add_doctor(request):
         # )
     return render(request,'hms_admin/add_doctor.html', {'departments':departments,'error_message' : error_msg, 'succes_message' : success_msg})
 
+@auth_admin
 def consultion_details(request,dr_id):
 
     consultation_detail = Consultation.objects.filter(doctor = dr_id)
@@ -111,18 +121,23 @@ def consultion_details(request,dr_id):
                 }
     return render(request,'hms_admin/consultation.html', context)
 
-
+@auth_admin
 def doctors_list(request):
     doctors = Doctor.objects.filter(status = 'active')
     return render(request,'hms_admin/doctors_list.html',{'active_doctors' : doctors})
 
+
+@auth_admin
 def view_report(request):
     return render(request,'hms_admin/view_report.html')
 
+
+@auth_admin
 def view_patient(request):
     patient = Patient.objects.all()
     return render(request,'hms_admin/view_patient.html',{'patient':patient})
 
+@auth_admin
 def add_department(request):
     error_msg = ''
     success_msg =''
@@ -144,11 +159,12 @@ def add_department(request):
             
     return render(request,'hms_admin/add_dept.html' , {'error_message' : error_msg, 'success_message' :success_msg})
 
+@auth_admin
 def view_department(request):
     departments = Department.objects.all()
     return render(request,'hms_admin/departments.html', {'departments' :departments})
 
-
+@auth_admin
 def add_staff(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -162,6 +178,7 @@ def add_staff(request):
         staff.save()
     return render(request,'hms_admin/add_staff.html')
 
+@auth_admin
 def view_staff(request):
     staff = Staff.objects.filter(status = 'active')
     return render(request,'hms_admin/view_staff.html',{'staff':staff})

@@ -27,7 +27,7 @@
                                  
                                     <th> Name </th>
                                     
-                                    <th>Department</th>
+                                    <th>Department </th>
                                     <th></th>
                                     <th></th>
                                      
@@ -37,11 +37,11 @@
                                  
                                 {% for doctor in active_doctors %}
                                 <tr>
-                                    <td>{{ forloop.counter }}</td>
+                                    <td><a class="text-dark"> {{ forloop.counter }}</a></td>
                                    
-                                    <td> {{ doctor.doctor_name | title }}</td>
+                                    <td><a class="text-dark"> {{ doctor.doctor_name | title }}</a></td>
                                    
-                                    <td> {{ doctor.department.department }}</td>
+                                    <td><a class="text-dark"> {{ doctor.department.department }} </a></td>
                                   
                                     <td><a href="" class="btn btn-success">Details</a></td>
                                     <td><a href="{% url 'hms_admin:consult_details' doctor.id %}" class="btn btn-warning">Consultation</a></td>

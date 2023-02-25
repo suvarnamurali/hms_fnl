@@ -44,7 +44,7 @@
         <div class="card-content">
           <span class="per-position"><br><br>TOTAL DOCTORS</span>          
           <div class="social-icons">
-            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>{{ doctors_count }}</i>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <div class="card-content">
           <span class="per-position"><br><br>TOTAL PATIENTS</span>
           <div class="social-icons">
-            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>{{ patients_count }}</i>
           </div>
         </div>
       </div>
@@ -71,21 +71,7 @@
 <div class="card-category-5">
 
   <ul class="all-pr-cards">
-    <li>
-      <div class="per-card-3">
-        <div class="card-image">
-          <span></span>
-          <img src="{% static 'assets/img/calendar.png' %}" class="logo" />
-        </div>
-
-        <div class="card-content">
-          <span class="per-position"><br><br>TOTAL APPOINTMENTS</span>
-          <div class="social-icons">
-            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
-          </div>
-        </div>
-      </div>
-    </li>
+     
 
     <li>
       <div class="per-card-3">
@@ -97,7 +83,7 @@
         <div class="card-content">
           <span class="per-position"><br><br>TOTAL DEPARTMENTS</span>
           <div class="social-icons">
-            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>0</i>
+            <i class="fa-solid fa-7" style="font-style: #fff"><br><br><br>{{ department_count }}</i>
           </div>
         </div>
       </div>
