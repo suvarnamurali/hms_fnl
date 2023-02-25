@@ -4,17 +4,22 @@ from django.db.models import Q
 from django.template.loader import render_to_string
 from common.models import Patient
 from patient.models import Booking
+from common.auth_guard import auth_staff
 
 # Create your views here.
+
+@auth_staff
 def staff_home(request):
     return render(request,'staff/staff_home.html')
 
 
-
+@auth_staff
 def appointments(request):
     booking = Booking.objects.all()
     return render(request,'staff/appointments.html',{'booking':booking})
 
+
+@auth_staff
 def registration(request):
 
     error_msg = ''
@@ -53,10 +58,14 @@ def registration(request):
 
     return render(request,'staff/registration.html',{'success_msg':success_msg,'error_msg':error_msg})
 
+
+@auth_staff
 def patient_search(request):
     patient = Patient.objects.all()
     return render(request,'staff/patient_search.html',{'patient':patient})
    
+
+@auth_staff
 def booking_list(request):
     bookings = Booking.objects.filter(Q(status = 'booked') | Q(status = 'completed'))
      
@@ -77,10 +86,13 @@ def booking_list(request):
     
     return render(request,'staff/bookings.html',{'bookings':bookings})
 
+
+@auth_staff
 def profile(request):
     
     return render(request,'staff/staff_profile.html')
 
+@auth_staff
 def logout(request):
     del request.session['staff']
     request.session.flush()
