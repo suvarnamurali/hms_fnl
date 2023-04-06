@@ -54,6 +54,14 @@
         margin-top: 20px;
         font-size: 30px;
     }
+    #tb1{
+        padding-left: 500px;
+        
+      }
+      #tb2{
+        padding:60px;
+      }
+    
 </style>
 
 {% endblock %}
@@ -112,15 +120,15 @@
 
 <!-- row start  -->
 
-<div class="row">
+<div class="row" id="tb1">
     <div class="col-md-12">
 
         <p>Available Days : </p>
         <p>
 
-
-        <table>
-            <tr>
+            <table class="table table-light striped" style="width: 500px; border-spacing: 5px; text-align:center; border: 1px solid white;">
+            <thead class="thead-primary">
+             <tr class="table-primary" >
                 <th>Day</th>
                 <th>Time</th>
             </tr>
@@ -140,10 +148,9 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="tb2">
     <div class="col-4"></div>
     <div class="col-7">
-
 
         <table style="width: 500px;border-collapse: separate; border-spacing: 10px;">
             <tr>
@@ -161,8 +168,6 @@
             </tr>
         </table>
         <div class="md-form md-outline input-with-post-icon datepicker">
-
-
 
         </div>
 

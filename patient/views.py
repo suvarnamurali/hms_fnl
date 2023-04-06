@@ -6,9 +6,12 @@ from hms_admin.models import Department,Doctor,Consultation
 from datetime import datetime
 from random import randint
 from django.db.models import Q
+from common.auth_guard import auth_patient
 from .services import get_slots,create_slots,create_bookings,generate_slot
 from django.http import JsonResponse,HttpResponse
 # Create your views here.
+
+@auth_patient
 def home(request):
 
     if 'log' in request.session:
@@ -31,18 +34,27 @@ def home(request):
         }
     return render(request,'patient/patient_home.html', context)
 
+@auth_patient
 def appointment(request): # old appointment
     return render(request,'patient/appointment.html')
 
+
+@auth_patient
 def confirmation(request): # old confirmation
     return render(request,'patient/confirmation.html')
 
+
+@auth_patient
 def my_bookings(request):
     return render(request,'patient/my_bookings.html')
 
+
+@auth_patient
 def prescriptions(request):
     return render(request,'patient/prescriptions.html')
 
+
+@auth_patient
 def change_password(request):
 
     error_msg = ''
@@ -72,13 +84,18 @@ def change_password(request):
 
     return render(request,'patient/pt_change-password.html',{'error_msg' : error_msg, 'success_msg' : success_msg})
 
+
+@auth_patient
 def patient_profile(request):
     patient_profile = Patient.objects.get(id = request.session['patient'])
     return render(request,'patient/patient_profile.html', {'patient': patient_profile})
 
+@auth_patient
 def register(request):
     return render(request,'patient/register.html')
 
+
+@auth_patient
 def patient_edit(request):
 
     if request.method == 'POST':
@@ -96,12 +113,16 @@ def patient_edit(request):
     
     return render(request,'patient/pt_edit_profile.html', {'patient': patient_edit})
 
+
+@auth_patient
 def appt_1(request):
     departments = Department.objects.all()
     availability = Consultation.objects.all()
     
     return render(request,'patient/appt_1.html', {'departments' : departments, })
 
+
+@auth_patient
 def appt_2(request):
 
     doctor_id = request.GET['dr']
@@ -114,6 +135,8 @@ def appt_2(request):
     
     return render(request,'patient/appt_2.html', {'doctor' :doctor_record,'consultation' : consultation_record })
 
+
+@auth_patient
 def appt_3(request):
     
 
@@ -178,6 +201,7 @@ def appt_3(request):
 
     return render(request,'patient/appt_3.html',context)
 
+@auth_patient
 def appt_4(request,bid):
     # latest_booking = Booking.objects.filter(patient = id).last()
     latest_booking = Booking.objects.get(id=bid)
