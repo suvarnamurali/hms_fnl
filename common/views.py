@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect,reverse
 from hms_admin.models import Staff,Doctor
 from .models import Patient
 from hms_admin.models import Department
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -117,7 +119,7 @@ def login(request):
                 msg = 'Invalid Username Or Password'
 
         
-    return render(request,'common/login.html', {'error_msg' : msg})
+    return render(request,'common/login.html', {'error_msg' : msg,'user_type':user_type})
 
 def department_details(request,id):
     department = Department.objects.get(id = id)
@@ -140,5 +142,69 @@ def make_appointment(request):
   
     request.session['log'] = True
     return redirect(reverse('common:login') + '?user=patient') 
+
+
+
+def forgot_pass(request):
+    
+    user_type = request.GET.get('user')
+    msg=""
+    if request.method=='POST':
+        email=request.POST['email']
+        
+        if user_type=='doc':
+             user = Doctor.objects.filter(doctor_email= email)               
+            
+        if user_type=='patient':
+            user = Patient.objects.filter(email=email)
+
+        if user_type=='staff' :
+            user = Staff.objects.filter(mail=email)
+
+        print('999',user_type)
+
+        if  user.exists():
+            print(user[0])
+            print(user[0].id)
+            uid=user[0].id    
+            message="password reset link  http://127.0.0.1:8000/reset_pass?user=" + user_type + "&id=" + str(uid)
+            print(message)
+            send_mail(
+                'password reset',
+                message,
+                settings.EMAIL_HOST_USER,
+                [user[0].email],
+                fail_silently=False)
+            
+            print('succsess')
+        else:
+            msg="user not exist"
+
+
+    return render(request,'common/forgot_pass.html',{'error':msg})
+
     
 
+def reset_pass(request):
+    msg=""
+    user_type = request.GET.get('user')
+    id=int(request.GET.get('id'))
+    if request.method=='POST':
+        password=request.POST['password']
+
+        if user_type=='doc':
+            user = Doctor.objects.get(id=id)     
+            
+        if user_type=='patient':
+            user = Patient.objects.get(id=id)
+            
+        if user_type=='staff' :
+            user = Staff.objects.get(id=id)
+
+
+        
+        user.password = password
+        user.save()
+        msg="pasword reset successfull"
+
+    return render(request,'common/reset_pass.html',{'msg':msg})

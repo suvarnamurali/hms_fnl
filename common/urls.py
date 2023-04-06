@@ -15,5 +15,7 @@ urlpatterns = [
     path('user-type', views.user_type, name='user_type'),
     path('login', views.login, name='login'),
     path('register', views.patient_registration, name='pat_register'),
-    path('make-appointment',views.make_appointment,name = 'make_appointment')
+    path('make-appointment',views.make_appointment,name = 'make_appointment'),
+    path('forgot_pass',views.forgot_pass,name = 'forgot_pass'),
+    path('reset_pass',views.reset_pass,name = 'reset_pass')
 ]
